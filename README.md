@@ -1,65 +1,65 @@
 # Flight Search Application
 
-Sistema de busca e análise de voos com integração à API Amadeus, desenvolvido para encontrar as melhores opções de passagens aéreas entre diferentes destinos.
+Flight search and analysis system integrated with the Amadeus API, built to find the best airfare options between different destinations.
 
-## 📋 Índice
+## 📋 Table of Contents
 
-- [Sobre o Projeto](#sobre-o-projeto)
-- [Funcionalidades](#funcionalidades)
-- [Tecnologias Utilizadas](#tecnologias-utilizadas)
-- [Pré-requisitos](#pré-requisitos)
-- [Instalação](#instalação)
-- [Configuração](#configuração)
-- [Uso](#uso)
-- [Estrutura do Projeto](#estrutura-do-projeto)
-- [Logs](#logs)
-- [Tratamento de Erros](#tratamento-de-erros)
-- [Contribuindo](#contribuindo)
-- [Licença](#licença)
+- [About the Project](#-about-the-project)
+- [Features](#-features)
+- [Technologies Used](#️-technologies-used)
+- [Prerequisites](#-prerequisites)
+- [Installation](#-installation)
+- [Configuration](#️-configuration)
+- [Usage](#-usage)
+- [Project Structure](#-project-structure)
+- [Limitations](#️-limitations)
+- [Logs](#-logs)
+- [Error Handling](#️-error-handling)
+- [License](#-license)
 
-## 🎯 Sobre o Projeto
+## 🎯 About the Project
 
-O Flight Search Application é uma ferramenta que automatiza a busca de voos ida e volta, permitindo encontrar as opções mais econômicas dentro de um período específico. O sistema:
+Flight Search Application is a tool that automates round-trip flight searches, making it possible to find the cheapest options within a given period. The system:
 
-- Busca voos em múltiplas datas dentro de um intervalo
-- Identifica automaticamente o menor preço disponível
-- Armazena os resultados em banco de dados
-- Suporta voos diretos e com conexões
-- Valida códigos IATA e intervalos de datas
+- Searches flights on multiple dates within a range
+- Automatically identifies the lowest available price
+- Stores the results in a database
+- Supports direct flights and flights with connections
+- Validates IATA codes and date ranges
 
-## ✨ Funcionalidades
+## ✨ Features
 
-- ✈️ **Busca Inteligente**: Pesquisa automática em múltiplas datas com incrementos configuráveis
-- 💰 **Melhor Preço**: Identifica e filtra automaticamente os voos com menor custo
-- 🔄 **Suporte a Conexões**: Calcula tempos de espera entre voos conectados
-- 🗄️ **Persistência**: Armazena itinerários em banco de dados para análise posterior
-- ✅ **Validação Robusta**: Valida códigos IATA, datas e parâmetros de busca
-- 📊 **Logging Detalhado**: Sistema completo de logs para auditoria e debugging
-- 🛡️ **Tratamento de Erros**: Gestão abrangente de exceções e casos extremos
+- ✈️ **Smart Search**: Automatic search across multiple dates with configurable increments
+- 💰 **Best Price**: Automatically identifies and filters the lowest-cost flights
+- 🔄 **Connection Support**: Computes layover times between connecting flights
+- 🗄️ **Persistence**: Stores itineraries in a database for later analysis
+- ✅ **Robust Validation**: Validates IATA codes, dates and search parameters
+- 📊 **Detailed Logging**: Complete logging system for auditing and debugging
+- 🛡️ **Error Handling**: Comprehensive handling of exceptions and edge cases
 
-## 🛠️ Tecnologias Utilizadas
+## 🛠️ Technologies Used
 
 - **Python 3.8+**
-- **airportsdata**: Base de dados de aeroportos IATA
-- **requests**: Cliente HTTP para API Amadeus
-- **sqlite3/postgresql**: Armazenamento de dados
-- **logging**: Sistema de logs integrado
+- **airportsdata**: IATA airport database
+- **requests**: HTTP client for the Amadeus API
+- **sqlite3/postgresql**: Data storage
+- **logging**: Built-in logging system
 
-## 📦 Pré-requisitos
+## 📦 Prerequisites
 
-- Python 3.8 ou superior
-- Conta na [Amadeus for Developers](https://developers.amadeus.com/)
-- pip (gerenciador de pacotes Python)
+- Python 3.8 or later
+- An [Amadeus for Developers](https://developers.amadeus.com/) account
+- pip (Python package manager)
 
-## 🚀 Instalação
+## 🚀 Installation
 
-1. **Clone o repositório**
+1. **Clone the repository**
 ```bash
 git clone https://github.com/luisaferreirass/flight-search-app.git
 cd flight-search-app
 ```
 
-2. **Crie um ambiente virtual**
+2. **Create a virtual environment**
 ```bash
 python -m venv venv
 
@@ -70,60 +70,60 @@ venv\Scripts\activate
 source venv/bin/activate
 ```
 
-3. **Instale as dependências**
+3. **Install the dependencies**
 ```bash
 pip install -r requirements.txt
 ```
 
-## ⚙️ Configuração
+## ⚙️ Configuration
 
-1. **Credenciais da API Amadeus**
+1. **Amadeus API credentials**
 
-Crie um arquivo `.env` na raiz do projeto:
+Create a `.env` file in the project root:
 
 ```env
-AMADEUS_API_KEY=seu_api_key_aqui
-AMADEUS_API_SECRET=seu_api_secret_aqui
+AMADEUS_API_KEY=your_api_key_here
+AMADEUS_API_SECRET=your_api_secret_here
 ```
 
-2. **Configuração do Banco de Dados**
+2. **Database configuration**
 
-O sistema criará automaticamente as tabelas necessárias na primeira execução. Para usar PostgreSQL em vez de SQLite, configure as variáveis de ambiente:
+The system automatically creates the required tables on the first run. To use PostgreSQL instead of SQLite, set the environment variables:
 
 ```env
 DB_TYPE=postgresql
 DB_HOST=localhost
 DB_PORT=5437
 DB_NAME=flight_search
-DB_USER=seu_usuario
-DB_PASSWORD=sua_senha
+DB_USER=your_user
+DB_PASSWORD=your_password
 ```
 
-## 💻 Uso
+## 💻 Usage
 
-### Executando o Script Principal
+### Running the Main Script
 
 ```bash
 python main.py
 ```
 
-### Parâmetros de Busca
+### Search Parameters
 
-Edite os parâmetros no arquivo `main.py`:
+Edit the parameters in the `main.py` file:
 
 ```python
 search_params = {
-    "date_start": "01-02-2026",  # Início do período de busca
-    "date_end": "20-06-2026",     # Fim do período de busca
-    "origin": "NAT",              # Aeroporto de origem (Natal)
-    "destination": "GRU",         # Aeroporto de destino (Guarulhos)
-    "days": 7                     # Duração da viagem
+    "date_start": "01-02-2026",  # Start of the search period
+    "date_end": "20-06-2026",     # End of the search period
+    "origin": "NAT",              # Origin airport (Natal)
+    "destination": "GRU",         # Destination airport (Guarulhos)
+    "days": 7                     # Trip length
 }
 ```
 
-### Códigos IATA Comuns
+### Common IATA Codes
 
-| Cidade | Código IATA |
+| City | IATA Code |
 |--------|-------------|
 | São Paulo (Guarulhos) | GRU |
 | Rio de Janeiro (Galeão) | GIG |
@@ -133,61 +133,61 @@ search_params = {
 | Salvador | SSA |
 | Fortaleza | FOR |
 
-## 📁 Estrutura do Projeto
+## 📁 Project Structure
 
 ```
 flight_search_app/
 │
-├── app/                   # Diretório principal da aplicação
-│   ├── api_client.py      # Cliente da API Amadeus
-│   ├── data_models.py     # Modelos de dados (Flight, Itinerary, Connection)
-│   ├── db.py              # Handler do banco de dados
-│   ├── errors.py          # Exceções customizadas
-│   ├── helpers.py         # Funções auxiliares
-│   ├── main.py            # Script principal de execução
-│   ├── models.py          # FlightSearcher e lógica de negócio
-│   └── validator.py       # Validadores de entrada (IATA, datas, etc)
+├── app/                   # Main application directory
+│   ├── api_client.py      # Amadeus API client
+│   ├── data_models.py     # Data models (Flight, Itinerary, Connection)
+│   ├── db.py              # Database handler
+│   ├── errors.py          # Custom exceptions
+│   ├── helpers.py         # Helper functions
+│   ├── main.py            # Main execution script
+│   ├── models.py          # FlightSearcher and business logic
+│   └── validator.py       # Input validators (IATA, dates, etc.)
 │
-├── .gitignore             # Arquivos ignorados pelo Git
-├── docker-compose.yml     # Configuração Docker
-├── README.md              # Documentação do projeto
-└── requirements.txt       # Dependências Python do projeto
+├── .gitignore             # Files ignored by Git
+├── docker-compose.yml     # Docker configuration
+├── README.md              # Project documentation
+└── requirements.txt       # Project Python dependencies
 
 ```
 
-## ⚠️ Limitações
+## ⚠️ Limitations
 
-**IMPORTANTE**: Este projeto foi desenvolvido exclusivamente para fins educacionais e de estudo pessoal. **Não deve ser utilizado para aplicações comerciais ou como ferramenta de decisão para compra de passagens.**
+**IMPORTANT**: This project was developed exclusively for educational purposes and personal study. **It should not be used for commercial applications or as a decision-making tool for buying tickets.**
 
-### Limitações da API Amadeus
+### Amadeus API Limitations
 
-- **Dados Não Atualizados em Tempo Real**: A API do Amadeus não reflete preços em tempo real. Existe um delay significativo entre as atualizações
-- **Ausência de Promoções**: Preços promocionais, ofertas relâmpago e descontos especiais disponíveis nos sites das companhias aéreas não aparecem na API
-- **Discrepância de Preços**: Os valores retornados podem ser substancialmente diferentes dos encontrados diretamente nos sites oficiais das companhias
+- **Data Not Updated in Real Time**: The Amadeus API does not reflect real-time prices. There is a significant delay between updates
+- **No Promotions**: Promotional fares, flash sales and special discounts available on airline websites do not appear in the API
+- **Price Discrepancies**: The returned values may differ substantially from those found directly on the airlines' official websites
 
-### Limitações do Projeto
+### Project Limitations
 
-- **Cobertura Limitada de Companhias**: Este projeto busca voos **apenas da LATAM e GOL**. Outras companhias aéreas que operam no Brasil (Azul, Avianca, etc.) não são incluídas
+- **Limited Airline Coverage**: This project searches flights **only from LATAM and GOL**. Other airlines operating in Brazil (Azul, Avianca, etc.) are not included
 
-- **Comparação Incompleta**: Para uma comparação completa de preços, é sempre recomendado consultar diretamente os sites das companhias aéreas e comparadores de voos comerciais
+- **Incomplete Comparison**: For a complete price comparison, it is always recommended to check the airlines' websites and commercial flight comparison sites directly
 
 
 
 ## 📝 Logs
 
-O sistema gera logs detalhados em dois locais:
+The system generates detailed logs in two places:
 
-1. **Console**: Saída em tempo real
-2. **Arquivo**: `flight_search.log`
+1. **Console**: Real-time output
+2. **File**: `flight_search.log`
 
-### Níveis de Log
+### Log Levels
 
-- **INFO**: Operações normais e marcos importantes
-- **DEBUG**: Informações detalhadas para debugging
-- **WARNING**: Situações inesperadas mas não críticas
-- **ERROR**: Erros que impedem operações específicas
+- **INFO**: Normal operations and important milestones
+- **DEBUG**: Detailed information for debugging
+- **WARNING**: Unexpected but non-critical situations
+- **ERROR**: Errors that prevent specific operations
 
-### Exemplo de Log
+### Sample Log
 
 ```
 2026-01-15 10:30:45 - __main__ - INFO - Flight Search Application Started
@@ -197,29 +197,28 @@ O sistema gera logs detalhados em dois locais:
 2026-01-15 10:30:48 - __main__ - INFO - Successfully saved 12/12 itineraries to database.
 ```
 
-## ⚠️ Tratamento de Erros
+## ⚠️ Error Handling
 
-O sistema trata os seguintes tipos de erros:
+The system handles the following types of errors:
 
-### Erros de Validação
+### Validation Errors
 
-- **InvalidIATACodeError**: Código de aeroporto inválido
-- **InvalidDateRangeError**: Intervalo de datas incorreto
-- **ValueError**: Número de dias inválido
+- **InvalidIATACodeError**: Invalid airport code
+- **InvalidDateRangeError**: Invalid date range
+- **ValueError**: Invalid number of days
 
-### Erros de API
+### API Errors
 
-- **ConnectionError**: Falha na conexão com a API
-- **Timeout**: Tempo limite excedido
+- **ConnectionError**: Failed to connect to the API
+- **Timeout**: Request timed out
 
-### Erros de Banco de Dados
+### Database Errors
 
-- Falhas de inserção são logadas mas não interrompem o processo
-- Conexão é sempre fechada no bloco `finally`
+- Insert failures are logged but do not interrupt the process
+- The connection is always closed in the `finally` block
 
 
 
-## 📄 Licença
+## 📄 License
 
-Este projeto está sob a licença MIT. Veja o arquivo `LICENSE` para mais detalhes.
-
+This project is licensed under the MIT License. See the `LICENSE` file for more details.
